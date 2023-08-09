@@ -1,0 +1,44 @@
+//입력으로 주어진 괄호 문자열이 VPS 인지 아닌지를 판단해서 그 결과를 YES 와 NO 로 나타내어야 한다.
+//입력은 T개의 테스트 데이터로 주어진다. 입력의 첫 번째 줄에는 입력 데이터의 수를 나타내는 정수 T가 주어진다.
+// 각 테스트 데이터의 첫째 줄에는 괄호 문자열이 한 줄에 주어진다.
+//하나의 괄호 문자열의 길이는 2 이상 50 이하이다.
+//력 괄호 문자열이 올바른 괄호 문자열(VPS)이면 “YES”, 아니면 “NO”를 한 줄에 하나씩 차례대로 출력해야 한다.
+
+package BaekJoon200;
+import java.util.Scanner;
+
+public class VPS {
+    public static void main(String[] args){
+        Scanner scanner = new Scanner(System.in);
+        int T = scanner.nextInt();
+        scanner.nextLine();
+        StringBuffer output = new StringBuffer();
+
+        for(int i = 0; i<T; i++){
+            String input = scanner.nextLine();
+            int cnt = 0;
+            boolean re = true; // re가 flase이면 마지막 판별에서 검사 안함
+
+            for(int j = 0; j<input.length(); j++){
+                if(input.charAt(j) == '('){
+                    cnt++;
+                    re = true;
+                }else if(cnt == 0){
+                    output.append("NO").append("\n");
+                    re = false;
+                    break;
+                }else{
+                    re = true;
+                    cnt--;
+                }
+            }
+
+            if(re && cnt == 0){ //판별
+                output.append("YES").append("\n");
+            }else if(re){
+                output.append("NO").append("\n");
+            }
+        }
+        System.out.println(output);
+    }
+}
