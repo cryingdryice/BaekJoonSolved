@@ -20,12 +20,6 @@ class Solution {
 //      삽입정렬(데이터가 적은경우에 효과적)
         insertionSort(answer);
 
-
-//      배열 출력
-        for (int i : answer){
-            System.out.println(i);
-        }
-
         return answer;
     }
     public void insertionSort(int[] arr) {
