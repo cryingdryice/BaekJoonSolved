@@ -21,14 +21,14 @@ class Solution {
             +subS(col, row+length/2, arr, length/2, answer) // 좌하
             +subS(col+length/2, row+length/2, arr, length/2, answer); // 우하
         
-        if(sum == 0){ // 서브트리의 합이 0이라면 4개 모두 0이라는 뜻
+        if(sum == 0){ // 서브의 합이 0이라면 4개 모두 0이라는 뜻
             answer[0] -= 3;
             return 0;
         }
-        if(sum == 4){ // 서브트리의 합이 4이라면 4개 모두 1이라는 뜻
+        if(sum == 4){ // 서브의 합이 4이라면 4개 모두 1이라는 뜻
             answer[1] -= 3;
             return 1;
         }
-        return -999;
+        return -999; // 둘 다 아니면 이 구역을 포함한 부분은 압축할 수 없음
     }
 }
