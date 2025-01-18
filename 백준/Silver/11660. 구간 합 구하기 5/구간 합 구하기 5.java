@@ -5,6 +5,7 @@ import java.io.*;
 public class Main {
     public static void main(String args[])throws IOException{
         BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+        BufferedWriter bw = new BufferedWriter(new OutputStreamWriter(System.out));
 
         String[] input = br.readLine().split(" ");
         int N = Integer.parseInt(input[0]);
@@ -26,7 +27,10 @@ public class Main {
             x2 = Integer.parseInt(input[2]);
             y2 = Integer.parseInt(input[3]);
 
-            System.out.println(arr[x2][y2] - arr[x1-1][y2] - arr[x2][y1-1] + arr[x1-1][y1-1]);
+            bw.write(Integer.toString(arr[x2][y2] - arr[x1-1][y2] - arr[x2][y1-1] + arr[x1-1][y1-1]) + '\n');
         }
+
+        bw.flush();
+        bw.close();
     }
 }
