@@ -1,24 +1,41 @@
 import java.io.*;
+import java.util.HashMap;
 
 public class Main {
-    static Node root;
 
     public static void main(String args[]) throws IOException {
         BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
-        BufferedWriter bw = new BufferedWriter(new OutputStreamWriter(System.out));
 
         int N = Integer.parseInt(br.readLine());
         String[] input;
+        HashMap<Character, Node> tree = new HashMap<Character, Node>();
         for(int i = 0; i<N; i++){
             input = br.readLine().split(" ");
-            create(input[0], input[1], input[2]);
+
+            char middle = input[0].charAt(0);
+            char left = input[1].charAt(0);
+            char right = input[2].charAt(0);
+
+            tree.putIfAbsent(middle, new Node(middle));
+            Node M = tree.get(middle);
+
+            if(left != '.'){
+                Node L = new Node(left);
+                M.left = L;
+                tree.put(left, L);
+            }
+            if(right != '.'){
+                Node R = new Node(right);
+                M.right = R;
+                tree.put(right, R);
+            }
         }
 
-        preOrder(root);
+        preOrder(tree.get('A'));
         System.out.println();
-        inOrder(root);
+        inOrder(tree.get('A'));
         System.out.println();
-        postOrder(root);
+        postOrder(tree.get('A'));
     }
 
     static void preOrder(Node n){
@@ -41,32 +58,12 @@ public class Main {
     }
 
     static class Node{
-        String value;
+        char value;
         Node left;
         Node right;
-        Node(String value){
+        Node(char value){
             this.value = value;
         }
     }
 
-    static void create(String value, String left, String right){
-        if(root == null){
-            root = new Node(value);
-            if(!left.equals(".")) root.left = new Node(left);
-            if(!right.equals(".")) root.right = new Node(right);
-        }
-        search(root, value, left, right);
-    }
-
-    static void search(Node n, String target, String left, String right){
-        if(n == null) return;
-
-        if(n.value.equals(target)){
-            if(!left.equals(".")) n.left = new Node(left);
-            if(!right.equals(".")) n.right = new Node(right);
-        }
-
-        search(n.left, target, left, right);
-        search(n.right, target, left, right);
-    }
 }
