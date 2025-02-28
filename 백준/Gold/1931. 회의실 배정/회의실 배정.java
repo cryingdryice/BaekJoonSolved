@@ -17,12 +17,12 @@ public class Main {
             times[i][1] = Integer.parseInt(input[1]);
         }
 
-        Arrays.sort(times, (a, b)-> a[0] - b[0]);
-        Arrays.sort(times, (a, b)-> a[1] - b[1]);
+//        Arrays.sort(times, (a, b)-> a[0] - b[0]);
+//        Arrays.sort(times, (a, b)-> a[1] - b[1]);
+        Arrays.sort(times, (a, b) -> a[1] == b[1] ? a[0] - b[0] : a[1] - b[1]);
 
 
         int cur = 0;
-        int i = 0;
         int cnt = 1;
 //        while(i<N){
 //            for(i = cur+1; i<N; i++){
@@ -33,12 +33,11 @@ public class Main {
 //                }
 //            }
 //        }
-        for(i = 1; i<N;){
+        for(int i = 1; i<N;){
             if(times[i][0] >= times[cur][1]){
                 cur = i;
                 i = cur+1;
                 cnt++;
-//                break;
             }else{
                 i++;
             }
